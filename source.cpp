@@ -93,8 +93,7 @@ class TPostfix
 			{
 				while (stack_op.characters.count != 0 && Priority(val: infix[i]) <= Priority(val: stack_op[stack_op.characters.count - 1]))
 				{
-				result.insert( stack_op[stack_op.characters.count - 1], at: result.endIndex) 
-                                result.insert( stack_op[stack_op.characters.count - 1], at: result.endIndex)//Pop1
+				result.insert( stack_op[stack_op.characters.count - 1], at: result.endIndex)//Pop1
                 stack_op.remove(at: stack_op.index(before: stack_op.endIndex))//Pop2
 				}
 				stack_op.insert(infix[i], at: stack_op.endIndex)//Push
@@ -118,7 +117,7 @@ class TPostfix
 
 };
 
-var postfix = TPostfix(val: "2+2+2")
+var postfix = TPostfix(val: "a+b+c")
 print("----");
 print("prior+") 
 print(postfix.Priority(val: "+")) 
