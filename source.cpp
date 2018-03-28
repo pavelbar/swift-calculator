@@ -1,4 +1,5 @@
 //print("Hello World! :-)");
+
 class TPostfix
 {
   var infix: String
@@ -23,6 +24,25 @@ class TPostfix
     func GetSizeInfix() -> Int
     {
         return infix.characters.count
+    }
+    
+    func ToPostfix() -> String
+    {
+        var len: Int = GetSizeInfix()
+        var result: String 
+        var stack = [String]()
+       
+        var count: Int = 0
+        var i: Int = 0
+        var flag: Int = 0 
+        
+        while i < len 
+        {
+            
+        }
+        
+        //--
+        return postfix;
     }
 };
 
