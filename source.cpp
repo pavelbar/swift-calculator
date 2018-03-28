@@ -42,11 +42,21 @@ class TPostfix
             
             if (infix[index] != "+" && infix[index] != "-" && infix[index] != "*" && infix[index] != "/" && infix[index] != "(" && infix[index] != ")" )
             {
-                print("not plus/minus/mult");
-            }
-            else
-            {
-                print("have plus/minus/mult");
+                flag = 0
+                while (infix[index] != "+" && infix[index] != "-" && infix[index] != "*" && infix[index] != "/" && infix[index] != "(" && infix[index] != ")" )
+                {
+                    if ((infix[index] >= "a" && infix[index] <= "z") || (infix[index] >= "A" && infix[index] <= "Z")) 
+                    {
+                        flag = 0;
+                    }
+                    else
+                    {
+                        flag = 1
+                    }
+                    welcome.remove(at: welcome.index(before: welcome.endIndex))
+		            		result[count++] = infix[i++];
+                }
+                
             }
             //--
             i = i + 1
