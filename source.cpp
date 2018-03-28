@@ -38,7 +38,18 @@ class TPostfix
         
         while i < len 
         {
-            
+            let index = infix.index(infix.startIndex, offsetBy: i)
+            infix[index] 
+            if infix[index]  == "+"
+            {
+                print("yes");
+            }
+            else
+            {
+                print("no");
+            }
+            //--
+            i = i + 1
         }
         
         //--
@@ -46,8 +57,9 @@ class TPostfix
     }
 };
 
-var postfix = TPostfix(s: "123")
+var postfix = TPostfix(s: "+2+")
 
 print(postfix.GetInfix())
 print(postfix.GetPostfix())
 print(postfix.GetSizeInfix())
+postfix.ToPostfix()
