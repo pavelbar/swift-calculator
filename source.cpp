@@ -1,5 +1,21 @@
 //print("Hello World! :-)");
 
+//print("Hello World! :-)");
+
+extension String {
+    subscript (i: Int) -> Character {
+        return Array(self.characters)[i]
+    }
+
+    subscript (r: CountableClosedRange<Int>) -> String {
+        return String(Array(self.characters)[r])
+    }
+
+    subscript (r: CountableRange<Int>) -> String {
+        return self[r.lowerBound...r.upperBound-1]
+    }
+}
+
 class TPostfix
 {
   var infix: String
@@ -13,7 +29,7 @@ class TPostfix
     self.lenInfix = infix.characters.count
   }
   
-    func GetInfix() -> String     {return infix}
+    func GetInfix() -> String   {return infix}
   
     func GetPostfix() -> String {return postfix}
     
@@ -21,13 +37,12 @@ class TPostfix
     
     func Priority(val: String) -> Int
 	{
-		let indexPriority = val.index(val.startIndex, offsetBy: 0)
-		if ((val[indexPriority] == "*") || (val[indexPriority] == "/")) 
+		if ((val[0] == "*") || (val[0] == "/")) 
 		{
 		    return 2;
 		}
 	
-		if ((val[indexPriority] == "+") || (val[indexPriority] == "-")) 
+		if ((val[0] == "+") || (val[0] == "-")) 
 		{
 		    return 1;
 		}
@@ -37,21 +52,29 @@ class TPostfix
    
     func ToPostfix() -> String
     {
-        var result: String  = ""
-
-       // var stack_op: String  = ""
+        var result: String = ""
+        var stack_op: String = ""
          
          for i in 0...self.lenInfix - 1
          {
             let index = infix.index(infix.startIndex, offsetBy: i)
-         //--
-             if (infix[index] != "+" && infix[index] != "-" && infix[index] != "*" && infix[index] != "/" && infix[index] != "(" && infix[index] != ")" )
+         //--1--
+             if (infix[index] != "(" && infix[index] != ")" && infix[index] != "+" && infix[index] != "-" && infix[index] != "*" && infix[index] != "/" )
              {
                 result.insert(infix[index], at: result.endIndex) 
              }
-         
-         }
+        //--2--
+	    	if (infix[index] == "(")
+	    	{
+	        	stack_op.insert(infix[index], at: stack_op.endIndex) 
+	    	}
+	    //--3--  
+	    if (infix[index] == ")")
+	    {
+
+	    }
          //--
+         }
          return postfix;
     }
     
@@ -59,10 +82,23 @@ class TPostfix
 };
 
 var postfix = TPostfix(val: "2+2+2")
-
+print("----");
+print("prior+") 
+print(postfix.Priority(val: "+")) 
+print("----");
+print("prior*") 
+print(postfix.Priority(val: "*")) 
+print("----");
+print("GetInfix") 
 print(postfix.GetInfix())
+print("----");
+print("GetPostfix") 
 print(postfix.GetPostfix())
+print("----");
+print("GetSizeInfix") 
 print(postfix.GetSizeInfix())
+print("----");
+print("ToPostfix") 
 postfix.ToPostfix()
 
 /*
