@@ -4,6 +4,74 @@ class TPostfix
 {
   var infix: String
   var postfix: String
+  var lenInfix: Int
+
+  init(val: String) 
+  {
+    self.infix = val
+     self.postfix = val
+    self.lenInfix = infix.characters.count
+  }
+  
+    func GetInfix() -> String     {return infix}
+  
+    func GetPostfix() -> String {return postfix}
+    
+    func GetSizeInfix() -> Int  {return lenInfix}
+    
+    func Priority(val: String) -> Int
+	{
+		let indexPriority = val.index(val.startIndex, offsetBy: 0)
+		if ((val[indexPriority] == "*") || (val[indexPriority] == "/")) 
+		{
+		    return 2;
+		}
+	
+		if ((val[indexPriority] == "+") || (val[indexPriority] == "-")) 
+		{
+		    return 1;
+		}
+		
+		return -7;
+	}
+   
+    func ToPostfix() -> String
+    {
+        var result: String  = ""
+
+       // var stack_op: String  = ""
+         
+         for i in 0...self.lenInfix - 1
+         {
+            let index = infix.index(infix.startIndex, offsetBy: i)
+         //--
+             if (infix[index] != "+" && infix[index] != "-" && infix[index] != "*" && infix[index] != "/" && infix[index] != "(" && infix[index] != ")" )
+             {
+                result.insert(infix[index], at: result.endIndex) 
+             }
+         
+         }
+         //--
+         return postfix;
+    }
+    
+
+};
+
+var postfix = TPostfix(val: "2+2+2")
+
+print(postfix.GetInfix())
+print(postfix.GetPostfix())
+print(postfix.GetSizeInfix())
+postfix.ToPostfix()
+
+/*
+//print("Hello World! :-)");
+
+class TPostfix
+{
+  var infix: String
+  var postfix: String
 
   init(s: String) 
   {
@@ -77,3 +145,4 @@ print(postfix.GetInfix())
 print(postfix.GetPostfix())
 print(postfix.GetSizeInfix())
 postfix.ToPostfix()
+*/
