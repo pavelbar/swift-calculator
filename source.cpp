@@ -19,4 +19,15 @@ class TPostfix
   {
     return postfix
   }
+    
+    func GetSizeInfix() -> Int
+    {
+        return infix.characters.count
+    }
 };
+
+var postfix = TPostfix(s: "123")
+
+print(postfix.GetInfix())
+print(postfix.GetPostfix())
+print(postfix.GetSizeInfix())
