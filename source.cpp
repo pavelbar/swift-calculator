@@ -29,7 +29,7 @@ class TPostfix
     func ToPostfix() -> String
     {
         var len: Int = GetSizeInfix()
-        var result: String 
+        var result: String  = ""
         var stack = [String]()
        
         var count: Int = 0
@@ -39,6 +39,7 @@ class TPostfix
         while i < len 
         {
             let index = infix.index(infix.startIndex, offsetBy: i)
+            let indexInc = infix.index(infix.startIndex, offsetBy: i+1)
             
             if (infix[index] != "+" && infix[index] != "-" && infix[index] != "*" && infix[index] != "/" && infix[index] != "(" && infix[index] != ")" )
             {
@@ -53,8 +54,11 @@ class TPostfix
                     {
                         flag = 1
                     }
-                    welcome.remove(at: welcome.index(before: welcome.endIndex))
-		            		result[count++] = infix[i++];
+                    result.insert(infix[indexInc], at: result.endIndex)
+                }
+                if( flag==1)
+                {
+                    result.insert(" ", at: result.endIndex)
                 }
                 
             }
@@ -67,7 +71,7 @@ class TPostfix
     }
 };
 
-var postfix = TPostfix(s: "1()1")
+var postfix = TPostfix(s: "22")
 
 print(postfix.GetInfix())
 print(postfix.GetPostfix())
