@@ -1,7 +1,5 @@
 //print("Hello World! :-)");
 
-//print("Hello World! :-)");
-
 extension String {
     subscript (i: Int) -> Character {
         return Array(self.characters)[i]
@@ -57,19 +55,18 @@ class TPostfix
          
          for i in 0...self.lenInfix - 1
          {
-            let index = infix.index(infix.startIndex, offsetBy: i)
          //--1--
-             if (infix[index] != "(" && infix[index] != ")" && infix[index] != "+" && infix[index] != "-" && infix[index] != "*" && infix[index] != "/" )
+             if (infix[i] != "(" && infix[i] != ")" && infix[i] != "+" && infix[i] != "-" && infix[i] != "*" && infix[i] != "/" )
              {
-                result.insert(infix[index], at: result.endIndex) 
+                result.insert(infix[i], at: result.endIndex) 
              }
         //--2--
-	    	if (infix[index] == "(")
+	    	if (infix[i] == "(")
 	    	{
-	        	stack_op.insert(infix[index], at: stack_op.endIndex) 
+	        	stack_op.insert(infix[i], at: stack_op.endIndex) 
 	    	}
 	    //--3--  
-	    if (infix[index] == ")")
+	    if (infix[i] == ")")
 	    {
 
 	    }
@@ -100,6 +97,7 @@ print(postfix.GetSizeInfix())
 print("----");
 print("ToPostfix") 
 postfix.ToPostfix()
+
 
 /*
 //print("Hello World! :-)");
