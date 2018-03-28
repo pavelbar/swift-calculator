@@ -40,7 +40,7 @@ class TPostfix
         {
             let index = infix.index(infix.startIndex, offsetBy: i)
             
-            if (infix[index]  != "+" && infix[index]  != "-" && infix[index] != "*" && infix[index]  != "/" && infix[index] != ")")
+            if (infix[index] != "+" && infix[index] != "-" && infix[index] != "*" && infix[index] != "/" && infix[index] != "(" && infix[index] != ")" )
             {
                 print("not plus/minus/mult");
             }
@@ -57,7 +57,7 @@ class TPostfix
     }
 };
 
-var postfix = TPostfix(s: "+2-2*")
+var postfix = TPostfix(s: "1()1")
 
 print(postfix.GetInfix())
 print(postfix.GetPostfix())
