@@ -183,7 +183,6 @@ class TPostfix
 	var a: String = ""
 	var b = [Double]()
     var flag: Int = 0
-    var k: Double = 0
 	
     var stack = [Double]()
 
@@ -208,7 +207,7 @@ class TPostfix
 			{
 		
                 //--
-                var tmp : Character = postfix[i];
+                let tmp : Character = postfix[i];
                 
                 //--
 				if ((tmp == "0") || (tmp == "1") || (tmp == "2") || (tmp == "3") || (tmp == "4") || (tmp == "5") || (tmp == "6") || (tmp == "7") || (tmp == "8") || (tmp == "9") )
@@ -217,12 +216,11 @@ class TPostfix
 				}
 				else
 				{
-    				  var k: Double = Double(?readLine())
     				print(postfix[i], "=");
-    				cin >> k;
+                    let k = Double(readLine(strippingNewline: true)!)!
     				b[i] = k;
 				}
-				stack.Push(b[i]);
+				stack.append(b[i]);
 			}
 
 		}
@@ -231,33 +229,49 @@ class TPostfix
 		{
 			if (postfix[i] == "+")
 			{
-				var tmp1: Double = stack.Pop();
-				var tmp11: Double = stack.Pop();
-				stack.Push(tmp11 + tmp1);
+				let tmp1: Double = stack[stack.count - 1]
+				stack.removeLast()
+				
+				let tmp11: Double = stack[stack.count - 1]
+				stack.removeLast()
+				
+				stack.append(tmp11 + tmp1)
 			}
 			if (postfix[i] == "-")
 			{
-				var tmp1: Double = stack.Pop();
-				var tmp11: Double = stack.Pop();
-				stack.Push(tmp11 - tmp1);
+				let tmp1: Double = stack[stack.count - 1]
+				stack.removeLast()
+				
+				let tmp11: Double = stack[stack.count - 1]
+				stack.removeLast()
+				
+				stack.append(tmp11 - tmp1)
 			}
 			if (postfix[i] == "/")
 			{
-				var tmp1: Double = stack.Pop();
-				var tmp11: Double = stack.Pop();
-				stack.Push(tmp11 / tmp1);
+				let tmp1: Double = stack[stack.count - 1]
+				stack.removeLast()
+				
+				let tmp11: Double = stack[stack.count - 1]
+				stack.removeLast()
+				
+				stack.append(tmp11 / tmp1)
 			}
 			if (postfix[i] == "*")
 			{
-				var tmp1: Double = stack.Pop();
-				var tmp11: Double = stack.Pop();
-				stack.Push(tmp11 * tmp1);
+				let tmp1: Double = stack[stack.count - 1]
+				stack.removeLast()
+				
+				let tmp11: Double = stack[stack.count - 1]
+				stack.removeLast()
+				
+				stack.append(tmp11 * tmp1)
 			}
 		}
 
 	}
 
-	return stack.Pop();
+	return stack[stack.count - 1]
 }
 
 };
@@ -280,8 +294,7 @@ print("GetSizeInfix")
 print(postfix.GetSizeInfix())
 print("----");
 print("ToPostfix") 
-postfix.ToPostfix()
+print(postfix.ToPostfix()) 
 print("----");
-print("GetPostfix") 
-print(postfix.GetPostfix())
-print("----");
+print("Calculate=") 
+print(postfix.Calculate()) 
