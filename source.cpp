@@ -2,7 +2,6 @@
 //  Created by PavelBaranov on 29.03.2018.
 //  Copyright © 2018 Admin. All rights reserved.
 //
-
 extension String {
     subscript (i: Int) -> Character {
         return Array(self.characters)[i]
@@ -172,11 +171,10 @@ class TPostfix
     //
     
     
-    func Calculate() -> Double
+    func Calculate(valA: Double, valB: Double) -> Double
     {
         var stack = [Double]()
-        
-        
+
         for i in 0...postfix.characters.count - 1
         {
             //--a--
@@ -187,11 +185,15 @@ class TPostfix
                 {
                     stack.append(atoi(str: postfix[i])) // преобразовать символы к типу double
                 }
-                else
+                else if postfix[i] == "a"
                 {
-                    print(postfix[i], "=");
-                    let k = Double(readLine(strippingNewline: true)!)!
-                    stack.append(k)
+
+
+                    stack.append(valA)
+                }
+                else if postfix[i] == "b"
+                {
+                    stack.append(valB)
                 }
                 
             }
@@ -260,6 +262,10 @@ class ViewController: UIViewController {
     var s: String = ""
     var onClickCalck: Bool = false
     
+    @IBOutlet weak var fieldB: UITextField!
+    
+    @IBOutlet weak var fieldA: UITextField!
+    
     @IBOutlet weak var labelPostfix: UILabel!
     
     @IBOutlet weak var labelResult: UILabel!
@@ -267,10 +273,10 @@ class ViewController: UIViewController {
     @IBAction func numbers(_ sender: UIButton)
     {
         if sender.tag == 1{
-        s = s + "a"
+            s = s + fieldA.text!
         }
         if sender.tag == 2{
-            s = s + "b"
+            s = s + fieldB.text!
         }
         if sender.tag == 3{
             if s.count != 0
@@ -331,8 +337,13 @@ class ViewController: UIViewController {
             {
                 onClickCalck = true
                 let postfix = TPostfix(val: s)
-                labelPostfix.text = "postfix:" + postfix.ToPostfix() + "="
-                labelResult.text = String(postfix.Calculate())
+                labelPostfix.text = "postfix: " + postfix.ToPostfix()
+                
+                let valA: String!
+                let valB: String!
+                valA = fieldA.text
+                valB = fieldB.text
+                labelResult.text = String(postfix.Calculate(valA: Double(valA)!, valB: Double(valB)!))
             }
         }
         if onClickCalck == false
