@@ -174,7 +174,7 @@ class TPostfix
     func Calculate(valA: Double, valB: Double) -> Double
     {
         var stack = [Double]()
-
+        
         for i in 0...postfix.characters.count - 1
         {
             //--a--
@@ -187,8 +187,6 @@ class TPostfix
                 }
                 else if postfix[i] == "a"
                 {
-
-
                     stack.append(valA)
                 }
                 else if postfix[i] == "b"
@@ -258,7 +256,7 @@ class TPostfix
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     var s: String = ""
     var onClickCalck: Bool = false
     
@@ -273,10 +271,10 @@ class ViewController: UIViewController {
     @IBAction func numbers(_ sender: UIButton)
     {
         if sender.tag == 1{
-            s = s + fieldA.text!
+            s = s + "a"
         }
         if sender.tag == 2{
-            s = s + fieldB.text!
+            s = s + "b"
         }
         if sender.tag == 3{
             if s.count != 0
@@ -348,7 +346,14 @@ class ViewController: UIViewController {
         }
         if onClickCalck == false
         {
-            labelResult.text = s
+            if s.count == 0
+            {
+                labelResult.text = "_"
+            }
+            else
+            {
+                labelResult.text = s
+            }
         }
         onClickCalck = false
     }
@@ -358,13 +363,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
 
