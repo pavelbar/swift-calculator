@@ -1,5 +1,7 @@
-//print("Hello World! :-)");
-
+//
+//  Created by PavelBaranov on 29.03.2018.
+//  Copyright © 2018 Admin. All rights reserved.
+//
 
 extension String {
     subscript (i: Int) -> Character {
@@ -164,23 +166,14 @@ class TPostfix
         return postfix;
     }
     
-    //----------------------------------------------------------------
-    //----------------------------------------------------------------
-    //----------------------------------------------------------------
-    //----------------------------------------------------------------
+    //
+    //  Created by PavelBaranov on 29.03.2018.
+    //  Copyright © 2018 Admin. All rights reserved.
+    //
     
     
     func Calculate() -> Double
     {
-        //https://ru.wikipedia.org/wiki/%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%B0%D1%8F_%D0%BF%D0%BE%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F_%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8C#.D0.9E.D0.B1.D1.89.D0.B8.D0.B9_.D0.BF.D0.BE.D1.80.D1.8F.D0.B4.D0.BE.D0.BA
-        //Алгоритм:
-        //1. Обработка входного символа
-        //    a) Если на вход подан операнд, он помещается на вершину стека.
-        //    b) Если на вход подан знак операции, то соответствующая операция выполняется над требуемым количеством значений,
-        //    извлечённых из стека, взятых в порядке добавления.Результат выполненной операции кладётся на вершину стека.
-        //2. Если входной набор символов обработан не полностью, перейти к шагу 1.
-        //3. После полной обработки входного набора символов результат вычисления выражения лежит на вершине стека.
-        
         var stack = [Double]()
         
         
@@ -253,25 +246,109 @@ class TPostfix
     
 };
 
-var postfix = TPostfix(val: "(1+4)/5")
-print("----");
-print("prior+")
-print(postfix.Priority(val: "+"))
-print("----");
-print("prior*")
-print(postfix.Priority(val: "*"))
-print("----");
-print("GetInfix")
-print(postfix.GetInfix())
-print("----");
-print("GetPostfix")
-print(postfix.GetPostfix())
-print("----");
-print("GetSizeInfix")
-print(postfix.GetSizeInfix())
-print("----");
-print("ToPostfix")
-print(postfix.ToPostfix())
-print("----");
-print("Calculate=")
-print(postfix.Calculate())
+
+//
+//  Created by PavelBaranov on 29.03.2018.
+//  Copyright © 2018 Admin. All rights reserved.
+//
+
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    var s: String = ""
+    
+    @IBOutlet weak var labelPostfix: UILabel!
+    
+    @IBOutlet weak var labelResult: UILabel!
+    
+    @IBAction func numbers(_ sender: UIButton)
+    {
+        if sender.tag == 1{
+        s = s + "a"
+        }
+        if sender.tag == 2{
+            s = s + "b"
+        }
+        if sender.tag == 3{
+            if s.count != 0
+            {
+                s.remove(at: s.index(before: s.endIndex))
+            }
+        }
+        if sender.tag == 4{
+            s = s + "/"
+        }
+        if sender.tag == 5{
+            s = s + "0"
+        }
+        if sender.tag == 6{
+            s = s + "("
+        }
+        if sender.tag == 7{
+            s = s + ")"
+        }
+        if sender.tag == 8{
+            s = s + "*"
+        }
+        if sender.tag == 9{
+            s = s + "1"
+        }
+        if sender.tag == 10{
+            s = s + "2"
+        }
+        if sender.tag == 11{
+            s = s + "3"
+        }
+        if sender.tag == 12{
+            s = s + "-"
+        }
+        if sender.tag == 13{
+            s = s + "4"
+        }
+        if sender.tag == 14{
+            s = s + "5"
+        }
+        if sender.tag == 15{
+            s = s + "6"
+        }
+        if sender.tag == 16{
+            s = s + "+"
+        }
+        if sender.tag == 17{
+            s = s + "7"
+        }
+        if sender.tag == 18{
+            s = s + "8"
+        }
+        if sender.tag == 19{
+            s = s + "9"
+        }
+        if sender.tag == 20{
+            if s.count != 0
+            {
+                let postfix = TPostfix(val: s)
+                labelPostfix.text = postfix.ToPostfix()
+                labelResult.text = String(postfix.Calculate())
+            }
+        }
+        
+        labelResult.text = s
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+
+}
+
+
