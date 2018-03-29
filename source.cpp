@@ -258,6 +258,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var s: String = ""
+    var onClickCalck: Bool = false
     
     @IBOutlet weak var labelPostfix: UILabel!
     
@@ -328,13 +329,17 @@ class ViewController: UIViewController {
         if sender.tag == 20{
             if s.count != 0
             {
+                onClickCalck = true
                 let postfix = TPostfix(val: s)
-                labelPostfix.text = postfix.ToPostfix()
+                labelPostfix.text = "postfix:" + postfix.ToPostfix() + "="
                 labelResult.text = String(postfix.Calculate())
             }
         }
-        
-        labelResult.text = s
+        if onClickCalck == false
+        {
+            labelResult.text = s
+        }
+        onClickCalck = false
     }
     
     
