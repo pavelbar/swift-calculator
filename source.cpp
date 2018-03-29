@@ -192,13 +192,13 @@ class TPostfix
                 
                 if ((postfix[i] == "0") || (postfix[i] == "1") || (postfix[i] == "2") || (postfix[i] == "3") || (postfix[i] == "4") || (postfix[i] == "5") || (postfix[i] == "6") || (postfix[i] == "7") || (postfix[i] == "8") || (postfix[i] == "9") )
                 {
-                    b.append(atoi(str: postfix[i])) // преобразовать символы к типу double
+                    stack.append(atoi(str: postfix[i])) // преобразовать символы к типу double
                 }
                 else
                 {
                     print(postfix[i], "=");
                     let k = Double(readLine(strippingNewline: true)!)!
-                    b.append(k)
+                    stack.append(k)
                 }
                 
             }
@@ -207,13 +207,13 @@ class TPostfix
             {
                 if (postfix[i] == "+")
                 {
-                    let tmp1: Double = b[b.count - 1]
-                    b.removeLast()
+                    let tmp1: Double = stack[stack.count - 1]
+                    stack.removeLast()
                     
-                    let tmp11: Double = b[b.count - 1]
-                    b.removeLast()
+                    let tmp11: Double = stack[stack.count - 1]
+                    stack.removeLast()
                     
-                    b.append(tmp11 + tmp1)
+                    stack.append(tmp11 + tmp1)
                 }
                 if (postfix[i] == "-")
                 {
@@ -253,7 +253,7 @@ class TPostfix
     
 };
 
-var postfix = TPostfix(val: "2+2+2")
+var postfix = TPostfix(val: "(1+4)/5")
 print("----");
 print("prior+")
 print(postfix.Priority(val: "+"))
